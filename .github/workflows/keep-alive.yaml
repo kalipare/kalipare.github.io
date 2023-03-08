@@ -8,11 +8,13 @@ jobs:
     name: keep alive
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: |
           OUTPUT=`curl --write-out '%{http_code}' --silent --output /dev/null -X GET "https://kalipare.com"`
           if [ $CODE!="200" ] 
           then
-              echo "FAILURE"
+              echo "FAILURE ✅" > README.md
           else
-              echo "SUCCESS"
+              echo "SUCCESS ❌" > README.md
           fi
+      - uses: stefanzweifel/git-auto-commit-action@v4
