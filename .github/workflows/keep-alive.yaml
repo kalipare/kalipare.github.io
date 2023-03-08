@@ -1,8 +1,8 @@
-name: gcp function keep alive
+name: keep alive
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/5 * * * *'
 jobs:
   build:
     name: keep alive
