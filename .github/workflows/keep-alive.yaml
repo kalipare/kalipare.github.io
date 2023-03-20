@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          OUTPUT=`curl --write-out '%{http_code}' --silent --output /dev/null -X GET "https://kalipare.com"`
+          CODE=`curl --write-out '%{http_code}' --silent --output /dev/null -X GET "https://kalipare.com"`
           if [ $CODE!="200" ] 
           then
               echo "FAILURE ❌" > README.md
