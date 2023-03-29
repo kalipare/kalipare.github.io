@@ -10,12 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          CODE=`curl --write-out '%{http_code}' --silent --output /dev/null -X GET "https://kalipare.com"`
-          echo $CODE
-          if [ $CODE!="200" ] 
+          if [ $(curl -LI https://kalipare.com -o /dev/null -w '%{http_code}\n' -s) == "200" ]
           then
-              echo "FAILURE ❌" > README.md
-          else
               echo "SUCCESS ✅" > README.md
+          else
+              echo "FAILURE ❌" > README.md
           fi
       - uses: stefanzweifel/git-auto-commit-action@v4
